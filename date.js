@@ -17,16 +17,16 @@ async function commitToGit() {
     try {
         // Change directory to your Git repository
         process.chdir('./');
-        
+
 
         // Set the date for the commit (in ISO 8601 format)
-        const commitDate = '2024-06-02T12:00:00';
+        const commitDate = '2002-08-03T12:00:00';
 
         // Add files to staging area
         await gitCommand('git add .');
 
         // Commit with custom date
-        await gitCommand(`git commit --date="${commitDate}" -m "Simple commit on Jun 2, 2024"`);
+        await gitCommand(`git commit --date="${commitDate}" -m "My Birthday😎"`);
 
         console.log('Commit successful!');
     } catch (error) {
