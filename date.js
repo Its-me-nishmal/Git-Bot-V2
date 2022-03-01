@@ -19,7 +19,7 @@ async function commitAndPushToGit() {
         process.chdir('./');
 
         // Set the date for the commit (in ISO 8601 format)
-        const commitDate = '2022-02-28T12:00:00';
+        const commitDate = '2022-03-01T12:00:00';
         
         // Add files to staging area
         await gitCommand('git add .');
