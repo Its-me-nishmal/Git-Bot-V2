@@ -51,4 +51,4 @@ setInterval(async () => {
     } catch (error) {
         console.error('Error:', error.message || error);
     }
-},  60 * 1000); // 10 seconds in milliseconds
+},  1000); // 10 seconds in milliseconds
