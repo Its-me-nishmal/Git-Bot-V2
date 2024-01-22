@@ -1,7 +1,8 @@
 const simpleGit = require('simple-git');
 const path = require('path');
 const fs = require('fs');
-const localRepositoryPath = './'; // Local path to the existing repository
+
+const githubToken = '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'; // Replace with your actual token
 
 // Function to create a random commit message
 const getRandomCommitMessage = () => {
@@ -16,34 +17,30 @@ const getRandomCommitMessage = () => {
 };
 
 const commitAndPush = async () => {
-    const git = simpleGit(localRepositoryPath);
+    const currentDirectory = process.cwd(); // Get the current working directory
+    const git = simpleGit(currentDirectory);
 
     try {
         const commitMessage = getRandomCommitMessage();
 
         const status = await git.status();
-        fs.writeFileSync('commit.txt', commitMessage);
+        fs.writeFileSync(path.join(currentDirectory, 'commit.txt'), commitMessage);
 
         await git.add('.');
+        await git.commit(commitMessage);
 
-        const commitInfo = await git.commit(commitMessage);
-
-        const pushInfo = await git.push('origin', 'main'); 
+        // Use the personal access token for authentication
+        const pushInfo = await git.push('origin', 'main', {
+            '--set-upstream': true,
+            '-u': 'origin',
+            '--repo': `https://username:${githubToken}@github.com/Its-me-nishmal/Git-Bot-V2`, // Replace with your GitHub username and repository
+        });
 
         console.log('Changes committed and pushed successfully.');
     } catch (error) {
         console.error('Error during commit and push:', error.message || error);
     }
 };
-
-// Check if the Git repository exists
-if (!fs.existsSync(localRepositoryPath)) {
-    console.error('Error: Git repository not found. Please set up the repository first.');
-    process.exit(1);
-}
-
-// Change to the repository directory and run commitAndPush function
-process.chdir(localRepositoryPath);
 
 // Run the script every 10 seconds
 setInterval(async () => {
@@ -52,4 +49,4 @@ setInterval(async () => {
     } catch (error) {
         console.error('Error:', error.message || error);
     }
-}, 5 * 60 * 1000); // 10 seconds in milliseconds
+},  60 * 1000); // 10 seconds in milliseconds
