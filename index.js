@@ -32,7 +32,6 @@ const commitAndPush = async () => {
         // Use the personal access token for authentication
         const pushInfo = await git.push('origin', 'main:main', {
             '--set-upstream': true,
-            '-u': 'origin',
             '--repo': `https://username:${githubToken}@github.com/Its-me-nishmal/Git-Bot-V2`,
             '--force': true, // Use force if necessary
         });
