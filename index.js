@@ -30,17 +30,19 @@ const commitAndPush = async () => {
         await git.commit(commitMessage);
 
         // Use the personal access token for authentication
-        const pushInfo = await git.push('origin', 'main', {
-            '--set-upstream': true,
-            '-u': 'origin',
-            '--repo': `https://username:${githubToken}@github.com/Its-me-nishmal/Git-Bot-V2`, // Replace with your GitHub username and repository
-        });
+        const pushInfo = await git.push('origin', 'main', [
+            '--set-upstream',
+            '-u',
+            'origin',
+            '--repo', `https://username:${githubToken}@github.com/Its-me-nishmal/Git-Bot-V2`, // Replace with your GitHub username and repository
+        ]);
 
         console.log('Changes committed and pushed successfully.');
     } catch (error) {
         console.error('Error during commit and push:', error.message || error);
     }
 };
+
 
 // Run the script every 10 seconds
 setInterval(async () => {
