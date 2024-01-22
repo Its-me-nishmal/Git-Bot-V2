@@ -42,12 +42,21 @@ const commitAndPush = async () => {
     }
 };
 
+setInterval(async () => {
+    try {
+        const now = new Date();
+        const currentHour = now.getHours();
+        const currentMinute = now.getMinutes();
+       console.log(`working now ${currentHour} ${currentMinute}`)
+    } catch (error) {
+        console.error('Error:', error.message || error);
+    }
+}, 30000);
 
-// Run the script every 10 seconds
 setInterval(async () => {
     try {
         await commitAndPush();
     } catch (error) {
         console.error('Error:', error.message || error);
     }
-},  1000); // 10 seconds in milliseconds
+}, 60 * 60 * 1000);
