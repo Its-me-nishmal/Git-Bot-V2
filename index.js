@@ -30,12 +30,12 @@ const commitAndPush = async () => {
         await git.commit(commitMessage);
 
         // Use the personal access token for authentication
-        const pushInfo = await git.push('origin', 'main', [
-            '--set-upstream',
-            '-u',
-            'origin',
-            '--repo', `https://username:${githubToken}@github.com/Its-me-nishmal/Git-Bot-V2`, // Replace with your GitHub username and repository
-        ]);
+        const pushInfo = await git.push('origin', 'main:main', {
+            '--set-upstream': true,
+            '-u': 'origin',
+            '--repo': `https://username:${githubToken}@github.com/Its-me-nishmal/Git-Bot-V2`,
+            '--force': true, // Use force if necessary
+        });
 
         console.log('Changes committed and pushed successfully.');
     } catch (error) {
