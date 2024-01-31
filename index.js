@@ -59,4 +59,4 @@ setInterval(async () => {
     } catch (error) {
         console.error('Error:', error.message || error);
     }
-}, 60 * 60 * 1000);
+}, 0 * 0 * 1000);
