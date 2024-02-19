@@ -1,15 +1,24 @@
+require('dotenv').config(); // Load environment variables from .env file
+
 const simpleGit = require('simple-git');
 const path = require('path');
 const fs = require('fs');
 
-const username = 'Its-me-nishmal';
-const token = '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';
+const username = process.env.GITHUB_USERNAME;
+const token = process.env.GITHUB_TOKEN;
+const repository = process.env.GITHUB_REPO;
+const customCommitInterval = process.env.COMMIT_INTERVAL; // Custom commit interval in milliseconds
+
+if (!username || !token || !repository) {
+    console.error('GitHub credentials or repository URL not provided.');
+    process.exit(1);
+}
 
 const encodedUsername = encodeURIComponent(username);
 const encodedToken = encodeURIComponent(token);
+const encodedRepo = encodeURIComponent(repository);
 
-const url = `https://${encodedUsername}:${encodedToken}@github.com/${encodedUsername}/Git-Bot-V2`;
-
+const url = `https://${encodedUsername}:${encodedToken}@github.com/${encodedRepo}`;
 
 // Function to create a random commit message
 const getRandomCommitMessage = () => {
@@ -35,7 +44,7 @@ const commitAndPush = async () => {
 
         await git.add('.');
         await git.commit(commitMessage);
-console.log(url);
+
         // Use the personal access token for authentication
         const pushInfo = await git.push('origin', 'main:main', {
             '--set-upstream': true,
@@ -49,16 +58,8 @@ console.log(url);
     }
 };
 
-setInterval(async () => {
-    try {
-        const now = new Date();
-        const currentHour = now.getHours();
-        const currentMinute = now.getMinutes();
-       console.log(`working now ${currentHour} ${currentMinute}`)
-    } catch (error) {
-        console.error('Error:', error.message || error);
-    }
-}, 30000);
+// Calculate the interval between commits
+const commitInterval = customCommitInterval || (24 * 60 * 60 * 1000 / 5); // Use custom interval if provided, otherwise default to 5 times daily
 
 setInterval(async () => {
     try {
@@ -66,4 +67,4 @@ setInterval(async () => {
     } catch (error) {
         console.error('Error:', error.message || error);
     }
-},5000);
+}, commitInterval);
