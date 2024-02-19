@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js", // Run node index.js with npm start
+    "test": "pm2 start index.js --name git-bot-v2" // Run pm2 with npm test
   },
   "keywords": [],
   "author": "",
