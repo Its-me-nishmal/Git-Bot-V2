@@ -27,7 +27,7 @@ const getRandomCommitMessage = () => {
         'Add a new feature',
         'Update documentation',
         'Refactor code',
-        'Implement a change',
+        'Implement a  change',
     ];
     return messages[Math.floor(Math.random() * messages.length)];
 };
