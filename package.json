@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js", // Run node index.js with npm start
-    "test": "pm2 start index.js --name git-bot-v2" // Run pm2 with npm test
+    "start": "node index.js",
+    "test": "pm2 start index.js --name git-bot-v2" 
   },
   "keywords": [],
   "author": "",
