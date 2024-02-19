@@ -2,7 +2,14 @@ const simpleGit = require('simple-git');
 const path = require('path');
 const fs = require('fs');
 
-const githubToken = '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'; // Replace with your actual token
+const username = 'Its-me-nishmal';
+const token = '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';
+
+const encodedUsername = encodeURIComponent(username);
+const encodedToken = encodeURIComponent(token);
+
+const url = `https://${encodedUsername}:${encodedToken}@github.com/${encodedUsername}/Git-Bot-V2`;
+
 
 // Function to create a random commit message
 const getRandomCommitMessage = () => {
@@ -32,7 +39,7 @@ const commitAndPush = async () => {
         // Use the personal access token for authentication
         const pushInfo = await git.push('origin', 'main:main', {
             '--set-upstream': true,
-            '--repo': `https://Its-me-nishmal:${githubToken}@github.com/Its-me-nishmal/Git-Bot-V2`,
+            '--repo': url,
             '--force': true, // Use force if necessary
         });
 
