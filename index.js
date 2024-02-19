@@ -35,7 +35,7 @@ const commitAndPush = async () => {
 
         await git.add('.');
         await git.commit(commitMessage);
-
+console.log(url);
         // Use the personal access token for authentication
         const pushInfo = await git.push('origin', 'main:main', {
             '--set-upstream': true,
