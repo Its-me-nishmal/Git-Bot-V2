@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 
 const username = 'Its-me-nishmal';
-const token = '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';
+const token = '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';
 
 const encodedUsername = encodeURIComponent(username);
 const encodedToken = encodeURIComponent(token);
