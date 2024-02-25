@@ -1,1 +1,1 @@
-Fix a bug
+Refactor code
