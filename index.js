@@ -68,7 +68,7 @@ const setGitConfig = async () => {
         // Set global email
         await git.addConfig('user.email', 'twalaba123@gmail.com');
         // Set global username
-        await git.addConfig('user.name', 'Its-me-nishmal');
+        await git.addConfig('user.name', 'its-me-nishmal');
 
         console.log('Global Git configurations set successfully.');
     } catch (error) {
