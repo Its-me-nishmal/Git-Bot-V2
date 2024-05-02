@@ -60,7 +60,24 @@ const commitAndPush = async () => {
 
 // Calculate the interval between commits
 const commitInterval = customCommitInterval || (24 * 60 * 60 * 1000 / 5); // Use custom interval if provided, otherwise default to 5 times daily
+const setGitConfig = async () => {
+    const currentDirectory = process.cwd(); // Get the current working directory
+    const git = simpleGit(currentDirectory);
 
+    try {
+        // Set global email
+        await git.addConfig('user.email', 'twalaba123@gmail.com');
+        // Set global username
+        await git.addConfig('user.name', 'Its-me-nishmal');
+
+        console.log('Global Git configurations set successfully.');
+    } catch (error) {
+        console.error('Error setting global Git configurations:', error.message || error);
+    }
+};
+
+// Call the function to set global Git configurations
+setGitConfig();
 setInterval(async () => {
     try {
         await commitAndPush();
