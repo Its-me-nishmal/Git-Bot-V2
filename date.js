@@ -21,6 +21,7 @@ async function commitToGit() {
 
         // Set the date for the commit (in ISO 8601 format)
         const commitDate = '2025-01-08T12:00:00';
+        
 
         // Add files to staging area
         await gitCommand('git add .');
