@@ -17,6 +17,7 @@ async function commitToGit() {
     try {
         // Change directory to your Git repository
         process.chdir('./');
+        
 
         // Set the date for the commit (in ISO 8601 format)
         const commitDate = '2024-06-02T12:00:00';
