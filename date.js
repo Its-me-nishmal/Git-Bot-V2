@@ -13,11 +13,10 @@ function gitCommand(command) {
     });
 }
 
-async function commitToGit() {
+async function commitAndPushToGit() {
     try {
         // Change directory to your Git repository
         process.chdir('./');
-
 
         // Set the date for the commit (in ISO 8601 format)
         const commitDate = '2025-01-08T12:00:00';
@@ -28,11 +27,14 @@ async function commitToGit() {
         // Commit with custom date
         await gitCommand(`git commit --date="${commitDate}" -m "My Birthday😎"`);
 
-        console.log('Commit successful!');
+        // Push changes to remote repository
+        await gitCommand('git push');
+
+        console.log('Commit and push successful!');
     } catch (error) {
         console.error('Error committing to Git:', error);
     }
 }
 
-// Call the function to commit
-commitToGit();
+// Call the function to commit and push
+commitAndPushToGit();
